@@ -1,0 +1,26 @@
+{
+  "useCommand" : true,
+  "allowUnknownCommand": false,
+  "allowUnknownOption": false,
+  "defaultCommand": "help",
+  "commands": {
+    "help": {
+      "description": "Display this message"
+    },
+    "start":{
+      "description": "Start maid monitor."
+    },
+    "stop":{
+      "description": "Stop maid monitor gracefully."
+    },
+    "status": {
+      "description": "Show maid status."
+    }
+  },
+  "globalOptions": {
+    "home": {
+      "default": "~/.maid/",
+      "description": "Home path for maid"
+    }
+  }
+}

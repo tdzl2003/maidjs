@@ -1,0 +1,7 @@
+{
+  "name": "maidjs",
+  "version": "0.0.1",
+  "bin": {
+    "maid": "bin/maid.js"
+  }
+}
