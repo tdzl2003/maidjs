@@ -15,6 +15,10 @@
     },
     "status": {
       "description": "Show maid status."
+    },
+    "daemon": {
+      "description": "Run maid monitor directly. Should not use directly ",
+      "hidden": true
     }
   },
   "globalOptions": {

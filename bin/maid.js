@@ -16,17 +16,42 @@ try{
     args = options.args;
     options = options.options;
 } catch (e){
-    options = {
-        command: 'help'
-    }
+    console.error(e.stack);
+    command = "help";
+    args = [];
+    options = {};
 }
 
-if (options.home && options.home[0] == '~'){
-    options.home = path.normalize(path.join(os.homedir(), options.home.substr(1)));
-}
+
+var Client = require("../lib/client");
 
 if (command == 'help') {
     cliArgv.displayHelp(argvJson, args[0]);
 } else if (command == 'start') {
-    require("../lib/client").startServer();
+    new Client(options)
+        .startServer()
+        .catch(function(e){
+            console.log(e.stack);
+        });
+} else if (command == 'status'){
+    new Client(options).getStatus()
+        .then(function(status) {
+            if (status.running){
+                if (status.notResponding){
+                    console.log('status: running[not-responding]');
+                } else {
+                    console.log('status: running')
+                }
+            }
+            console.log('status: stopped');
+        }).catch(function(e){
+            console.error(e.stack);
+        });
+} else if (command == 'daemon'){
+    let Server = require("../lib/server");
+    new Server(options)
+        .start()
+        .catch(function(e){
+            console.error(e.stack);
+        });;
 }

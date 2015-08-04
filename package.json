@@ -3,5 +3,9 @@
   "version": "0.0.1",
   "bin": {
     "maid": "bin/maid.js"
+  },
+  "dependencies": {
+    "co": "^4.6.0",
+    "lockfile": "^1.0.1"
   }
 }
