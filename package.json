@@ -5,6 +5,7 @@
     "maid": "bin/maid.js"
   },
   "dependencies": {
+    "babel": "^5.8.20",
     "co": "^4.6.0",
     "lockfile": "^1.0.1"
   }
