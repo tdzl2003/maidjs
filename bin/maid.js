@@ -1,4 +1,4 @@
-#!node
+#!/usr/bin/env babel-node
 "use strict";
 
 if (require.main !== module){
@@ -8,6 +8,7 @@ if (require.main !== module){
 var cliArgv = require("cli-arguments");
 var path = require("path");
 var os = require("os");
+var co = require("co");
 var argvJson = require("./maid-argv.json");
 var options, command, args;
 try{
@@ -28,30 +29,29 @@ var Client = require("../lib/client");
 if (command == 'help') {
     cliArgv.displayHelp(argvJson, args[0]);
 } else if (command == 'start') {
-    new Client(options)
-        .startServer()
-        .catch(function(e){
+    co(new Client(options).startServer())
+        .catch( e =>{
             console.log(e.stack);
         });
 } else if (command == 'status'){
-    new Client(options).getStatus()
-        .then(function(status) {
+    co(new Client(options).getStatus())
+        .then(status => {
             if (status.running){
                 if (status.notResponding){
                     console.log('status: running[not-responding]');
                 } else {
                     console.log('status: running')
                 }
+            } else {
+                console.log('status: stopped');
             }
-            console.log('status: stopped');
         }).catch(function(e){
             console.error(e.stack);
         });
 } else if (command == 'daemon'){
     let Server = require("../lib/server");
-    new Server(options)
-        .start()
-        .catch(function(e){
+    co(new Server(options).start())
+        .catch(e => {
             console.error(e.stack);
         });;
 }
