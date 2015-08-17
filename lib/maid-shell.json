@@ -1,0 +1,18 @@
+{
+    "useCommand": true,
+    "allowUnknownCommand": false,
+    "allowUnknownOption": false,
+    "defaultCommand": "",
+    "commands": {
+        "help": {
+            "description": "Display this message"
+        },
+        "hello": {
+            "description": "Display hello message for shell",
+            "hidden": true
+        },
+        "set": {
+            "description": "Set a session config."
+        }
+    }
+}
