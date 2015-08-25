@@ -12,7 +12,14 @@
             "hidden": true
         },
         "set": {
-            "description": "Set a session config."
+            "description": "Set a session config.",
+            "minArgCount": 1,
+            "maxArgCount": 2
+        },
+        "get": {
+            "description": "Get a session config.",
+            "minArgCount": 1,
+            "maxArgCount": 1
         }
     }
 }
